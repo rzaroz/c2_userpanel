@@ -1,0 +1,52 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    {% include 'components/headers.html' %}
+    {% block header %}
+    {% endblock %}
+</head>
+<body>
+    <div class="menuContainer">
+        <div class="openandclosebtn"><i class="fa-solid fa-bars" style="color: #ffffff;"></i></div>
+        <div class="shortcuts">
+            <a href="{% url 'userpanel' %}" title="خانه">
+                <i class="fa-solid fa-house"></i>
+            </a>
+            <a href="" title="جستجو">
+                <i class="fa-solid fa-magnifying-glass"></i>
+            </a>
+            <a href="{% url 'setting' %}" title="تنظیمات">
+                <i class="fa-solid fa-gear"></i>
+            </a>
+        </div>
+        <div class="menudetils">
+            <div class="userProfile">
+                <img src="{% static 'images/blankuser.webp' %}" alt="">
+                <h5><span>user</span>خوش آمدید </h5>
+            </div>
+            <div class="menu">
+                {% block menu %}
+                {% endblock %}
+            </div>
+        </div>
+    </div>
+    <div class="objcontainer">
+        <div class="objectsbar">
+            <div class="notifandlogo">
+                <img src="{% static 'images/c2_logo_purple.png' %}" alt="">
+                <div class="notif">
+                    <i class="fa-solid fa-bell" style="color: #ffffff;"></i>
+                    <div class="notifcounter">1</div>
+                </div>
+            </div>
+        </div>
+        <div class="objects">
+            {% block object %}
+            {% endblock %}
+        </div>
+    </div>
+    <script src="https://cdn.jsdelivr.net/npm/chart.js@2.8.0"></script>
+    <script src="{% static 'js/chart.js' %}"></script>
+</body>
+</html>

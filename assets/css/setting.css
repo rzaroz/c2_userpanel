@@ -1,0 +1,241 @@
+/* settingcontainer */
+.settingcontainer {
+    width: 95%;
+    height: 95%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background-color: white;
+    border-radius: 25px;
+    box-shadow: 2px 2px 10px gray;
+    flex-direction: column;
+}
+.settingcontainer form {
+    width: 100%;
+    height: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-direction: column;
+}
+.profilepic,
+.inputs,
+.subbtn,
+.links {
+    width: 70%;
+    height: auto;
+    padding: 30px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-direction: column;
+    gap: 15px;
+}
+.profilepic img {
+    width: 100px;
+    height: 100px;
+    border-radius: 50%;
+}
+.choosefile {
+    width: 70%;
+    height: 50px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background-color: #eee;
+    border-radius: 15px;
+    position: relative;
+}
+.choosefile input[type=file]{
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    color: transparent;
+}
+.choosefile input[type=file]::-webkit-file-upload-button{
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    cursor: pointer;
+    border-radius: 15px;
+    opacity: 0;
+}
+/* input */
+.inputs {
+    flex-wrap: wrap;
+    flex-direction: unset;
+}
+.input {
+    width: calc(100% / 2.7);
+    height: auto;
+    display: flex;
+    align-items: flex-end;
+    justify-content: center;
+    flex-direction: column;
+    padding: 10px;
+}
+.input input {
+    width: 90%;
+    height: auto;
+    padding: 10px;
+    border-radius: 10px;
+    direction: rtl;
+    outline: transparent;
+    background-color: #eee;
+    border: none;
+}
+.input input::placeholder {
+    font-size: 10px;
+    color: rgba(0, 0, 0, 0.23);
+}
+.subbtn button{
+    padding: 6px;
+    border-radius: 10px;
+    outline: transparent;
+    border: transparent;
+    background-color: var(--bgcolorMenu);
+    color: white;
+    cursor: pointer;
+}
+/* links */
+.links {
+    flex-direction: unset;
+    gap: 10px;
+}
+.links a {
+    padding: 10px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background-color: var(--bgcolorMenu);
+    color: white;
+    border-radius: 10px;
+}
+/* --------------------------------------UNDER 5 INCH PHONES--------------------------------------------- */
+@media (min-width: 300px) and (max-width: 389px) {
+    /* Objects */
+    .objcontainer {
+        width: 100vw;
+        height: auto;
+        justify-content: start;
+    }
+    .objectsbar {
+        width: 100%;
+        height: auto;
+        padding-top: 10px;
+        padding-bottom: 10px;
+    }
+    .objects {
+        width: 100%;
+        height: auto;
+        padding-top: 20px;
+        padding-bottom: 20px;
+    }
+    .settingcontainer {
+        width: 80%;
+        height: auto;
+        padding: 20px;
+    }
+    .inputs {
+        flex-direction: column;
+    }
+    .input {
+        width: 100%;
+    }
+}
+/* --------------------------------------5 INCH AND BIGGER PHONES--------------------------------------------- */
+@media (min-width: 390px) and (max-width: 600px) {
+    /* Objects */
+    .objcontainer {
+        width: 100vw;
+        height: auto;
+        justify-content: start;
+    }
+    .objectsbar {
+        width: 100%;
+        height: auto;
+        padding-top: 10px;
+        padding-bottom: 10px;
+    }
+    .objects {
+        width: 100%;
+        height: auto;
+        padding-top: 20px;
+        padding-bottom: 20px;
+    }
+    .settingcontainer {
+        width: 80%;
+        height: auto;
+        padding: 20px;
+    }
+    .inputs {
+        flex-direction: column;
+    }
+    .input {
+        width: 100%;
+    }
+}
+/* --------------------------------------Mini tablets--------------------------------------------- */
+@media (min-width: 601px) and (max-width: 800px) {
+    /* Objects */
+    .objcontainer {
+        width: 100vw;
+        height: auto;
+        justify-content: start;
+    }
+    .objectsbar {
+        width: 100%;
+        height: auto;
+        padding-top: 10px;
+        padding-bottom: 10px;
+    }
+    .objects {
+        width: 100%;
+        height: auto;
+        padding-top: 20px;
+        padding-bottom: 20px;
+    }
+    .settingcontainer {
+        width: 80%;
+        height: auto;
+        padding: 20px;
+    }
+    .inputs {
+        flex-direction: column;
+    }
+    .input {
+        width: 100%;
+    }
+}
+/* --------------------------------------Tablets--------------------------------------------- */
+@media (min-width: 801px) and (max-width: 1000px) {
+    /* Objects */
+    .objcontainer {
+        width: 100vw;
+        height: auto;
+        justify-content: start;
+    }
+    .objectsbar {
+        width: 100%;
+        height: auto;
+        padding-top: 10px;
+        padding-bottom: 10px;
+    }
+    .objects {
+        width: 100%;
+        height: auto;
+        padding-top: 20px;
+        padding-bottom: 20px;
+    }
+    .settingcontainer {
+        width: 80%;
+        height: auto;
+        padding: 20px;
+    }
+    .inputs {
+        flex-direction: column;
+    }
+    .input {
+        width: 100%;
+    }
+}   

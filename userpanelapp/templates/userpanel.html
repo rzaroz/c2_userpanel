@@ -1,0 +1,131 @@
+{% extends 'base.html' %}
+{% block header %}
+    <title>صفحه کاربری</title>
+{% endblock %}
+{% block menu %}
+<a href="">
+    <h5>صفحه اصلی</h5>
+</a>
+<a href="">
+    <h5>جستجو</h5>
+</a>
+<a href="">
+    <h5>مشارکت در تبلیغات</h5>
+</a>
+<a href="">
+    <h5>ثبت تبلیغات</h5>
+</a>
+<a href="">
+    <h5>گزاش تبلیغات</h5>
+</a>
+<a href="">
+    <h5>ارسال تیکت</h5>
+</a>
+<a href="">
+    <h5>چت آنلاین</h5>
+</a>
+<a href="">
+    <h5>خیریه</h5>
+</a>
+<a href="{% url 'setting' %}">
+    <h5>تنظیمات</h5>
+</a>
+{% endblock %}
+{% block object %}
+<div class="banners">
+<div class="banner wallet">
+    <div class="icon">
+        <i class="fa-solid fa-wallet"></i>
+    </div>
+    <div class="info">
+        <h3>: موجوی کیف پول شما</h3>
+        <span>
+            <h2>3000</h2>
+            <h5>تومان</h5>
+        </span>
+    </div>
+</div>
+<div class="banner">
+    <div class="icon">
+        <i class="fa-solid fa-hand-holding-heart"></i>
+    </div>
+    <div class="info">
+        <h3>: اهدایی شما به خیریه</h3>
+        <span>
+            <h2>3000</h2>
+            <h5>تومان</h5>
+        </span>
+    </div>
+</div>
+<div class="banner">
+    <div class="icon">
+        <i class="fa-solid fa-dollar-sign"></i>
+    </div>
+    <div class="info">
+        <h3>: کل درامد شما</h3>
+        <span>
+            <h2>3000</h2>
+            <h5>تومان</h5>
+        </span>
+    </div>
+</div>
+</div>
+<div class="jobinfo">
+<div class="jobinfochild finishedjobs">
+    <div class="icon">
+        <i class="fa-solid fa-check"></i>
+    </div>
+    <div class="donelistview">
+        <h2>پروژه های انجام شده</h2>
+        <a href="">مشاهده</a>
+    </div>
+</div>
+<div class="jobinfochild openjobs">
+    <canvas id="meuGrafico"></canvas>
+</div>
+<div class="jobinfochild openjobs">
+    <div class="icon">
+        <i class="fa-solid fa-hand"></i>
+    </div>
+    <div class="donelistview">
+        <h2>پروژه های در دست انجام</h2>
+        <a href="">مشاهده</a>
+    </div>
+</div>
+</div>
+<div class="mainshortcuts">
+<div class="mainshort">
+    <div class="icon">
+        <i class="fa-solid fa-ticket"></i>
+    </div>
+    <div class="shortlink">
+        <h1>درخواست پشتیبانی</h1>
+        <a href="">
+            پشتیبانی
+        </a>
+    </div>
+</div>
+<div class="mainshort">
+    <div class="icon">
+        <i class="fa-solid fa-gear"></i>
+    </div>
+    <div class="shortlink">
+        <h1>تغییر اطلاعات کاربری</h1>
+        <a href="">
+            تنظیمات
+        </a>
+    </div>
+</div>
+<div class="mainshort">
+    <div class="icon">
+        <i class="fa-solid fa-hand-holding-heart"></i>
+    </div>
+    <div class="shortlink">
+        <h1>کمک به خیریه</h1>
+        <a href="">
+            پرداخت
+        </a>
+    </div>
+</div>
+</div>
+{% endblock %}

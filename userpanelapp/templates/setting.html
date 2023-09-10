@@ -1,0 +1,78 @@
+{% extends 'base.html' %}
+{% load static %}
+{% block header %}
+    <link rel="stylesheet" href="{% static 'css/setting.css' %}">
+    <title>تنظیمات</title>
+{% endblock %}
+{% block menu %}
+<a href="">
+    <h5>صفحه اصلی</h5>
+</a>
+<a href="">
+    <h5>جستجو</h5>
+</a>
+<a href="">
+    <h5>مشارکت در تبلیغات</h5>
+</a>
+<a href="">
+    <h5>ثبت تبلیغات</h5>
+</a>
+<a href="">
+    <h5>گزاش تبلیغات</h5>
+</a>
+<a href="">
+    <h5>ارسال تیکت</h5>
+</a>
+<a href="">
+    <h5>چت آنلاین</h5>
+</a>
+<a href="">
+    <h5>خیریه</h5>
+</a>
+<a href="">
+    <h5>تنظیمات</h5>
+</a>
+{% endblock %}
+{% block object %}
+<div class="settingcontainer">
+    <form action="">
+        <div class="links">
+            <a href="">
+                تغییر رمز
+            </a>
+            <a href="">
+                تغییر رنگ تم
+            </a>
+        </div>
+        <div class="profilepic">
+            <img src="{% static 'images/blankuser.webp' %}" alt="">
+            <div class="choosefile"><h4>انتخاب عکس</h4><input type="file" name="" id=""></div>
+        </div>
+        <div class="inputs">
+            <div class="input">
+                <h4>نام</h4>
+                <input type="text" name="" id="" placeholder="نام خود را جهت تغییر وارد کنید ..">
+            </div>
+            <div class="input">
+                <h4>نام خانودگی</h4>
+                <input type="text" name="" id="" placeholder="نام خانوادگی خود را جهت تغییر وارد کنید ..">
+            </div>
+            <div class="input">
+                <h4>ایمیل</h4>
+                <input type="text" name="" id="" placeholder="ایمیل خود را جهت تغییر وارد کنید ..">
+            </div>
+            <div class="input">
+                <h4>کد ملی</h4>
+                <input type="text" name="" id="" placeholder="کد ملی خود را جهت تغییر وارد کنید ..">
+            </div>
+            <div class="input">
+                <h4>شماره تماس</h4>
+                <input type="text" name="" id="" placeholder="شماره تماس خود را جهت تغییر وارد کنید ..">
+            </div>
+        </div>
+        <div class="subbtn">
+            <button>اعمال تغییرات</button>
+        </div>
+    </form>
+</div>
+{% endblock %}

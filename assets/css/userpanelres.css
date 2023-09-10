@@ -1,0 +1,441 @@
+.banners {
+    width: 100%;
+    height: calc(100% /3.5);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 15px;
+    padding-top: 20px;
+}
+.banner {
+    width: calc( 100% / 3 - 30px );
+    height: 100%;
+    border-radius: 30px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    box-shadow: 4px 4px 15px gray;
+    background-color: white;
+}
+.icon {
+    width: calc(100% / 2);
+    height: 100%;
+    font-size: 150px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: var(--bgcolorMenu);
+}
+.info {
+    width: calc(100% / 2);
+    height: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-direction: column;
+    color: rgb(54, 54, 54);
+    position: relative;
+}
+.info h3{
+    text-align: right;
+    font-size: 25px;
+    position: absolute;
+    top: 80px;
+    right: 10px;
+}
+.info span{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 20px;
+    font-size: 40px;
+    position: absolute;
+    top: 120px;
+    left: 0px;
+}
+.info span h5 {
+    color: var(--bgcolorMenu);
+}
+/* chart */
+.chart {
+    width: calc(100% / 3.5);
+    height: auto;
+    border-radius: 30px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    box-shadow: 4px 4px 15px gray;
+    background-color: white;
+}
+/* jobinfo */
+.jobinfo {
+    width: 100%;
+    height: calc(100% /3.5);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 15px;
+    padding-top: 20px;
+}
+.jobinfochild {
+    width: calc(100% / 3 - 30px);
+    height: 100%;
+    display: flex;
+    border-radius: 30px;
+    align-items: center;
+    justify-content: center;
+    box-shadow: 4px 4px 15px gray;
+    background-color: white;
+}
+.donelistview {
+    width: calc(90% / 2);
+    height: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-direction: column;
+    gap: 5px;
+}
+.donelistview a {
+    width: 120px;
+    height: auto;
+    padding: 10px;
+    border-radius: 10px;
+    background-color: var(--bgcolorMenu);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: white;
+    transition: all 0.3s linear;
+}
+.donelistview a:hover {
+    background-color: white;
+    color: var(--bgcolorMenu);
+}
+/* mainshort */
+.mainshortcuts {
+    width: 100%;
+    height: calc(100% / 3.5);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 20px;
+    padding-top: 20px;
+}
+.mainshort {
+    width: calc(100% / 3 - 30px);
+    height: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background-color: var(--bgcolorMenu);
+    border-radius: 30px;
+    box-shadow: 4px 4px 15px gray;
+}
+.mainshort .icon {
+    color: white;
+}
+.shortlink {
+    width: calc(100% / 2);
+    height: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-direction: column;
+    color: white;
+}
+.shortlink a {
+    width: 120px;
+    height: auto;
+    padding: 10px;
+    border-radius: 10px;
+    background-color: white;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: var(--bgcolorMenu);
+    transition: all 0.3s linear;
+}
+.shortlink a:hover {
+    transform: scale(1.06);
+}
+/* --------------------------------------UNDER 5 INCH PHONES--------------------------------------------- */
+@media (min-width: 300px) and (max-width: 389px) {
+    /* Objects */
+    .objcontainer {
+        width: 100vw;
+        height: auto;
+        justify-content: start;
+    }
+    .objectsbar {
+        width: 100%;
+        height: auto;
+        padding-top: 10px;
+        padding-bottom: 10px;
+    }
+    .objects {
+        width: 100%;
+        height: auto;
+        padding-top: 20px;
+        padding-bottom: 20px;
+    }
+    .banners {
+        width: 100%;
+        height: auto;
+        padding-top: 10px;
+        padding-bottom: 20px;
+        flex-direction: column;
+    }
+    .banner {
+        width: 95%;
+        height: 200px;
+        border-radius: 20px;
+    }
+    .icon {
+        font-size: 120px;
+    }
+    .info h3{
+        position: unset;
+        font-size: 15px;
+    }
+    .info span{
+        position: unset;
+        font-size: 23px;
+    }
+    .jobinfo {
+        width: 100%;
+        height: auto;
+        padding-top: 10px;
+        padding-bottom: 20px;
+        flex-direction: column;
+    }
+    .jobinfochild {
+        width: 95%;
+        height: 200px;
+        border-radius: 20px;
+    }
+    .mainshortcuts {
+        width: 100%;
+        height: auto;
+        padding-top: 10px;
+        padding-bottom: 20px;
+        flex-direction: column;
+    }
+    .mainshort {
+        width: 95%;
+        height: 200px;
+        border-radius: 20px;
+    }
+}
+/* --------------------------------------5 INCH AND BIGGER PHONES--------------------------------------------- */
+@media (min-width: 390px) and (max-width: 600px) {
+    /* Objects */
+    .objcontainer {
+        width: 100vw;
+        height: auto;
+        justify-content: start;
+    }
+    .objectsbar {
+        width: 100%;
+        height: auto;
+        padding-top: 10px;
+        padding-bottom: 10px;
+    }
+    .objects {
+        width: 100%;
+        height: 100vh;
+        padding-top: 20px;
+        padding-bottom: 20px;
+    }
+    .banners {
+        width: 100%;
+        height: auto;
+        padding-top: 10px;
+        padding-bottom: 20px;
+        flex-direction: column;
+    }
+    .banner {
+        width: 95%;
+        height: 200px;
+        border-radius: 20px;
+    }
+    .icon {
+        font-size: 120px;
+    }
+    .info h3{
+        position: unset;
+        font-size: 15px;
+    }
+    .info span{
+        position: unset;
+        font-size: 23px;
+    }
+    .jobinfo {
+        width: 100%;
+        height: auto;
+        padding-top: 10px;
+        padding-bottom: 20px;
+        flex-direction: column;
+    }
+    .jobinfochild {
+        width: 95%;
+        height: 200px;
+        border-radius: 20px;
+    }
+    .mainshortcuts {
+        width: 100%;
+        height: auto;
+        padding-top: 10px;
+        padding-bottom: 20px;
+        flex-direction: column;
+    }
+    .mainshort {
+        width: 95%;
+        height: 200px;
+        border-radius: 20px;
+    }
+}
+/* --------------------------------------Mini tablets--------------------------------------------- */
+@media (min-width: 601px) and (max-width: 800px) {
+    /* Objects */
+    .objcontainer {
+        width: 100vw;
+        height: auto;
+        justify-content: start;
+    }
+    .objectsbar {
+        width: 100%;
+        height: auto;
+        padding-top: 10px;
+        padding-bottom: 10px;
+    }
+    .objects {
+        width: 100%;
+        height: 100vh;
+        padding-top: 20px;
+        padding-bottom: 20px;
+    }
+    .banners {
+        width: 100%;
+        height: auto;
+        padding-top: 10px;
+        padding-bottom: 20px;
+        flex-direction: column;
+    }
+    .banner {
+        width: 95%;
+        height: 200px;
+        border-radius: 20px;
+    }
+    .icon {
+        font-size: 120px;
+    }
+    .info h3{
+        position: unset;
+        font-size: 15px;
+    }
+    .info span{
+        position: unset;
+        font-size: 23px;
+    }
+    .jobinfo {
+        width: 100%;
+        height: auto;
+        padding-top: 10px;
+        padding-bottom: 20px;
+        flex-direction: column;
+    }
+    .jobinfochild {
+        width: 95%;
+        height: 200px;
+        border-radius: 20px;
+    }
+    .mainshortcuts {
+        width: 100%;
+        height: auto;
+        padding-top: 10px;
+        padding-bottom: 20px;
+        flex-direction: column;
+    }
+    .mainshort {
+        width: 95%;
+        height: 200px;
+        border-radius: 20px;
+    }
+}
+/* --------------------------------------Tablets--------------------------------------------- */
+@media (min-width: 801px) and (max-width: 1000px) {
+    /* Objects */
+    .objcontainer {
+        width: 100vw;
+        height: auto;
+        justify-content: start;
+    }
+    .objectsbar {
+        width: 100%;
+        height: auto;
+        padding-top: 10px;
+        padding-bottom: 10px;
+    }
+    .objects {
+        width: 100%;
+        height: 100vh;
+        padding-top: 20px;
+        padding-bottom: 20px;
+    }
+    .banners {
+        width: 100%;
+        height: auto;
+        padding-top: 10px;
+        padding-bottom: 20px;
+        flex-direction: column;
+    }
+    .banner {
+        width: 95%;
+        height: 200px;
+        border-radius: 20px;
+    }
+    .icon {
+        font-size: 120px;
+    }
+    .info h3{
+        position: unset;
+        font-size: 15px;
+    }
+    .info span{
+        position: unset;
+        font-size: 23px;
+    }
+    .jobinfo {
+        width: 100%;
+        height: auto;
+        padding-top: 10px;
+        padding-bottom: 20px;
+        flex-direction: column;
+    }
+    .jobinfochild {
+        width: 95%;
+        height: 200px;
+        border-radius: 20px;
+    }
+    .mainshortcuts {
+        width: 100%;
+        height: auto;
+        padding-top: 10px;
+        padding-bottom: 20px;
+        flex-direction: column;
+    }
+    .mainshort {
+        width: 95%;
+        height: 200px;
+        border-radius: 20px;
+    }
+}
+/* ----------------------------------------------------UNDER 15 INCH LAPTOPS & Devices------------------------------------------------------- */
+@media (min-width: 1001px) and (max-width: 1300px) {
+
+}
+/* ----------------------------------------------------Big Devices------------------------------------------------------- */
+@media screen and (min-width: 1600px){
+
+}
