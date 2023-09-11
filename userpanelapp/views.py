@@ -1,9 +1,11 @@
 from django.shortcuts import render
 
-def userpanel(request):
+
+def user_panel(request):
     context = {}
 
     return render(request, 'userpanel.html', context)
+
 
 def setting(request):
     context = {}
