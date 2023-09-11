@@ -3,5 +3,5 @@ from .views import user_panel, setting
 
 urlpatterns = [
     path('', user_panel, name="userpanel"),
-    path('Setting', setting, name="setting"),
+    path('setting', setting, name="setting"),
 ]
