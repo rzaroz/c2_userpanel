@@ -1,13 +1,17 @@
 from pathlib import Path
+import os, json
+
+DIRECTORY = os.path.dirname((os.path.abspath(__file__)))
+PROJECT_DIR = os.path.dirname(DIRECTORY)
+with open(PROJECT_DIR + '/env_var.json', 'r') as file:
+    ENV = json.loads(file.read())
 
 BASE_DIR = Path(__file__).resolve().parent.parent
 
 SECRET_KEY = 'django-insecure-7-3r5j(5c1c5k^t279=3d&jkb4i3v6f4w(6td1fdvu9_x-qp4a'
 
-DEBUG = True
-
-ALLOWED_HOSTS = []
-
+DEBUG = ENV['DEBUG']
+ALLOWED_HOSTS = ENV['ALLOWED_HOSTS'].split(',')
 
 INSTALLED_APPS = [
     'django.contrib.admin',
@@ -52,11 +56,15 @@ WSGI_APPLICATION = 'userpanel.wsgi.application'
 
 DATABASES = {
     'default': {
-        'ENGINE': 'django.db.backends.sqlite3',
-        'NAME': BASE_DIR / 'db.sqlite3',
+        'ENGINE': ENV["DATABASE_ENGINE"],
+        'NAME': ENV['DB_NAME'],
+        'USER': ENV['DB_USER'],
+        'PASSWORD': ENV['DB_PASSWORD'],
+        'HOST': ENV['DB_HOST'],
+        'PORT': ENV['DB_PORT'],
     }
-}
 
+}
 
 AUTH_PASSWORD_VALIDATORS = [
     {
@@ -73,7 +81,6 @@ AUTH_PASSWORD_VALIDATORS = [
     },
 ]
 
-
 LANGUAGE_CODE = 'en-us'
 
 TIME_ZONE = 'UTC'
@@ -84,11 +91,14 @@ USE_TZ = True
 
 STATIC_URL = 'static/'
 
-STATICFILES_DIRS = [
-    BASE_DIR / "assets"
-]
 
-STATIC_ROOT = BASE_DIR / "static_cdn" / "static_root"
+if ENV["REAL_SERVER"]:
+    STATIC_ROOT = BASE_DIR / "static_cdn" / "static_root"
+else:
+    STATICFILES_DIRS = [
+        BASE_DIR / "assets"
+    ]
+
 
 MEDIA_URL = "media/"
 

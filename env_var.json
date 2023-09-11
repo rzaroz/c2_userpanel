@@ -1,0 +1,14 @@
+{
+  "REAL_SERVER": false,
+  "DEBUG": true,
+  "ALLOWED_HOSTS": "localhost,127.0.0.1",
+  "DATABASE_ENGINE": "django.db.backends.mysql",
+  "DB_NAME": "c2_user_panel",
+  "DB_USER": "root",
+  "DB_PASSWORD": "",
+  "DB_HOST": "localhost",
+  "DB_PORT": "3306",
+  "VERSION_CSS": "2.3.6",
+  "VERSION_JS": "2.5.6"
+}
+

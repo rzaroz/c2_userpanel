@@ -1,7 +1,7 @@
 from django.urls import path
-from .views import userpanel, setting
+from .views import user_panel, setting
 
 urlpatterns = [
-    path('', userpanel, name="userpanel"),
+    path('', user_panel, name="userpanel"),
     path('Setting', setting, name="setting"),
 ]
