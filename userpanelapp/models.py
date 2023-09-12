@@ -1,5 +1,7 @@
 from django.db import models
 
+from extentions.utils import jalali_converter
+
 
 class GeneralDate(models.Model):
     updated_at = models.DateTimeField(auto_now=True)
@@ -30,6 +32,24 @@ class Profile(GeneralDate):
     balance = models.PositiveIntegerField(default=0)
     skill_count = models.IntegerField(default=1)
     hash = models.CharField(max_length=20)
+
+    class Meta:
+        verbose_name = "پروفایل"
+        verbose_name_plural = "پروفایل"
+
+    def __str__(self):
+        return str(self.user_id)
+
+    @property
+    def user(self):
+        return User()
+
+    def save(
+            self, *args, **kwargs
+    ):
+        if not self.hash:
+            self.hash = make_hash(Flow)
+        super().save(*args, **kwargs)
 
 
 class Address(GeneralDate):
