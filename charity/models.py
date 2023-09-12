@@ -13,9 +13,8 @@ class Charity(models.Model):
     )
     first_name = models.CharField(max_length=100, null=True, blank=True)
     last_name = models.CharField(max_length=100, null=True, blank=True)
-    price = models.BigIntegerField(max_length=100, null=False, blank=False)
-    phone_number=models.IntegerField(max_length=15, null=False, blank=False)
+    price = models.PositiveBigIntegerField(null=False, blank=False)
+    phone_number = models.IntegerField(null=False, blank=False)
     created_at = models.DateTimeField(auto_now_add=True)
     updated_at = models.DateTimeField(auto_now=True)
     status = models.IntegerField(choices=payment_Status, null=False, blank=False)
-

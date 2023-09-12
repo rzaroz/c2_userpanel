@@ -29,8 +29,6 @@ class TokenMiddleWare(MiddlewareMixin):
         }
         response = requests.request("POST", url, headers=headers, data=payload)
         if response.status_code == 200:
-            # user_id = response.json()['user_id']
-            # user = User.objects.filter(id=user_id).first()
             user_id = response.json()['user_id']
             username = response.json()['username']
             first_name = response.json()['first_name']

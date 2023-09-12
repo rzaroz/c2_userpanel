@@ -1,8 +1,6 @@
-import functools
-from functools import wraps
-from django.shortcuts import render
-from django.db import connection, reset_queries
 import time
+from django.db import connection, reset_queries
+from django.shortcuts import render
 
 
 class PermissionCode:

@@ -1,7 +1,7 @@
 from django.db import models
-from extensions.log_error_middleware import get_exact_exception_info
+from extentions.log_error_middleware import get_exact_exception_info
 
-from extensions.utils import jalali_converter
+from extentions.utils import jalali_converter
 from django.contrib.auth.models import User
 
 
