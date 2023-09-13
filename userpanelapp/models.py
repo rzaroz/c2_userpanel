@@ -73,8 +73,16 @@ class Factor(GeneralDate):
     discount = models.PositiveIntegerField()
     gift = models.PositiveIntegerField()
     amount = models.PositiveIntegerField()
-    owner = models.ForeignKey(Profile, on_delete=models.SET_NULL, null=True, blank=True, related_name='owner')
-    end_user = models.ForeignKey(Profile, on_delete=models.SET_NULL, null=True, blank=True, related_name='end_user')
+    owner = models.ForeignKey(Profile,
+                              on_delete=models.SET_NULL,
+                              null=True,
+                              blank=True,
+                              related_name='profile_owner')
+    end_user = models.ForeignKey(Profile,
+                                 on_delete=models.SET_NULL,
+                                 null=True,
+                                 blank=True,
+                                 related_name='profile_end_user')
 
 
 class FactorRow(GeneralDate):

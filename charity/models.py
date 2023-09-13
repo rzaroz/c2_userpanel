@@ -6,7 +6,7 @@ from django.utils import timezone
 
 
 class Charity(models.Model):
-    payment_Status = (
+    PAYMENT_STATUS = (
         (1, "Accepted"),
         (2, "Rejected"),
         (3, "Pending")
@@ -17,4 +17,4 @@ class Charity(models.Model):
     phone_number = models.IntegerField(null=False, blank=False)
     created_at = models.DateTimeField(auto_now_add=True)
     updated_at = models.DateTimeField(auto_now=True)
-    status = models.IntegerField(choices=payment_Status, null=False, blank=False)
+    status = models.IntegerField(choices=PAYMENT_STATUS, null=False, blank=False)
