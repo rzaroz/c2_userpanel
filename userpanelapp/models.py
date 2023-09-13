@@ -1,6 +1,7 @@
 from django.db import models
 
 from extentions.utils import jalali_converter
+from charity.models import *
 
 
 class GeneralDate(models.Model):
@@ -69,7 +70,7 @@ class Service(GeneralDate):
 
 class Factor(GeneralDate):
     status = models.IntegerField()
-    charity = models.PositiveIntegerField()
+    charity = models.ForeignKey(Charity, on_delete=models.SET_NULL, null=True, blank=True)
     discount = models.PositiveIntegerField()
     gift = models.PositiveIntegerField()
     amount = models.PositiveIntegerField()
@@ -86,13 +87,33 @@ class Factor(GeneralDate):
 
 
 class FactorRow(GeneralDate):
-    factor = models.ForeignKey(Factor, on_delete=models.SET_NULL, null=True, blank=True, related_name='factor')
-    service = models.ForeignKey(Service, on_delete=models.SET_NULL, null=True, blank=True, related_name='service')
+    STORE = 1
+    SERVICE = 2
+    TYPE_CHOICES = ((STORE, 'store'), (SERVICE, 'service'))
+
+    row_number = models.PositiveIntegerField()
+    factor = models.ForeignKey(Factor,
+                               on_delete=models.SET_NULL,
+                               null=True,
+                               blank=True,
+                               related_name='factor_rows')
+    service = models.OneToOneField(Service,
+                                   on_delete=models.SET_NULL,
+                                   null=True,
+                                   blank=True,
+                                   related_name='service_factor')
+    description = models.TextField()
     count = models.PositiveIntegerField()
+    type = models.IntegerField(choices=TYPE_CHOICES)
 
 
 class Rate(GeneralDate):
     profile = models.ForeignKey("Profile", on_delete=models.CASCADE, related_name='profile_rate')
+    star = models.PositiveIntegerField()
+
+
+class SpecialRate(GeneralDate):
+    profile = models.ForeignKey("Profile", on_delete=models.CASCADE, related_name='profile_special_rate')
     star = models.PositiveIntegerField()
 
 

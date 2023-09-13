@@ -1,0 +1,158 @@
+{% load static %}
+<html>
+
+<head>
+    <meta name="viewport" content="width=device-width">
+    <meta charset="utf-8">
+    <link rel="stylesheet" href="{% static 'css/mystyle.css' %}">
+    <script src="{% static '/js/script.js' %}"></script>
+    <link rel="stylesheet" href="{% static 'css/animate.css' %}">
+    <script src="{% static 'js/JsBarcode.all.min.js' %}"></script>
+    <script src="{% static 'js/jquery-3.6.3.js' %}"></script>
+    <link rel="stylesheet" href="{% static 'css/icomoon.css' %}">
+    <link rel="stylesheet" href="{% static 'css/simple-line-icons.css' %}">
+    <link rel="shortcut icon" href="{% static 'images/favicon.png' %}" type="image/x-icon">
+    <link rel="icon" href="{% static 'images/favicon.png' %}" type="image/x-icon">
+</head>
+
+<body>
+
+<div id="title">صدور فاکتور خدمات</div>
+<div id="factor_container">
+    <div id="factor_header">
+        <div id="header_right">
+            <div id="header_boxr">صورت حساب آقای/خانم:</div>
+            <div id="header_boxr">تلفن:</div>
+            <div id="header_boxr">آدرس:</div>
+        </div>
+        <br>
+        <div id="header_center">
+            <div id="center_top">فاکتور خدمات</div>
+            <div id="center_top"></div>
+        </div>
+        <div id="header_left">
+            <div style="margin-top: -10px;">تاریخ:</div>
+            <div>
+                <div style="float: right;    margin-top: 10px;">بارکد:</div>
+                <div style="margin-top: -13px;margin-right: 80px;">
+                    <svg id="barcode"></svg>
+                </div>
+            </div>
+
+        </div>
+    </div>
+
+    <div style="position: relative" id="factor_body">
+
+        <style>
+            #header_boxl {
+                float: left;
+                margin-top: 40px;
+                width: 170px;
+                margin-right: auto;
+                margin-left: 10px;
+                margin-bottom: 10px;
+            }
+
+            #factor_container {
+                font-family: BKoodakBold;
+                width: 950px;
+                min-height: 400px;
+                border: 3px solid #3e305f;
+                box-shadow: aliceblue 1px;
+                margin-top: 10px;
+                margin-bottom: 10px;
+                margin-right: auto;
+                margin-left: auto;
+                border-radius: 3px;
+                direction: rtl;
+                background-color: #fff;
+                box-shadow: 30px 6px 13px 1px rgb(117 13 189 / 20%);
+                border-radius: 10px;
+            }
+
+            table {
+                width: 95%;
+
+                border-collapse: collapse !important;
+                margin-left: auto;
+                margin-right: auto;
+                border: solid;
+                box-shadow: 8px 6px 13px 1px rgb(117 13 189 / 20%);
+                border-radius: inherit;
+            }
+        </style>
+
+
+    </div>
+    <div id="table"></div>
+    <br>
+    <div id="table1"></div>
+    <br>
+    <div id="table2" style="width: 30%;
+        margin-right: 66%;"></div>
+    <br>
+
+
+    <script>
+        $(document).ready(function () {
+            JsBarcode("#barcode", "1234", {
+                format: "pharmacode",
+                lineColor: "#8c67e5",
+                width: 4,
+                height: 40,
+                displayValue: false
+            });
+
+        })
+
+    </script>
+    <script src="./js/script.js"></script>
+    <script>
+        var data3 = []
+        var data1 = [];
+
+        {% for index in factor_rows %}
+            {% if index.type == 2 %}
+                data3 += {
+                    خدمات: '{{ index.row_number }}',
+                    نام_کالا: '{{ index.service.name }}',
+                    قیمت: '{{ index.service.price }}',
+                    تعداد: '{{ index.count }}',
+                    توضیح: '{{ index.description }}'
+                }
+
+            {% elif index.type == 1 %}
+                data1 += {
+                    کدکالا: '{{ index.row_number }}',
+                    نام_کالا: '{{ index.service.name }}',
+                    قیمت: '{{ index.service.price }}',
+                    تعداد: '{{ index.count }}',
+                    توضیح: '{{ index.description }}'
+                }
+            {% endif %}
+        {% endfor %}
+
+        var data2 = [
+            {جمع_کل_فاگتور: {{ total_price }}, مالیات: " 200", خیریه: 10, تخفیف: 100},
+        ];
+        $(document).ready(function () {
+            var r = new ResponsiveTable(data3, "#table");
+            r.show_view()
+            var r1 = new ResponsiveTable(data1, "#table1");
+            r1.show_view()
+            var r2 = new LittleWindow(data2, "#table2");
+            r2.show_view()
+        });
+        addEventListener("resize", (event) => {
+            var r = new ResponsiveTable(data3, "#table");
+            r.show_view()
+            var r1 = new ResponsiveTable(data1, "#table1");
+            r1.show_view()
+            var r2 = new LittleWindow(data2, "#table2");
+            r2.show_view()
+        });
+    </script>
+</body>
+
+</html>

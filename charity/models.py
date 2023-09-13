@@ -2,10 +2,21 @@ from django.db import models
 from django.utils import timezone
 
 
-# Create your models here.
+class GeneralDate(models.Model):
+    updated_at = models.DateTimeField(auto_now=True)
+    created_at = models.DateTimeField(auto_now_add=True)
+
+    def jtime_updated_at(self):
+        return jalali_converter(self.updated_at)
+
+    def jtime_created_at(self):
+        return jalali_converter(self.created_at)
+
+    class Meta:
+        abstract = True
 
 
-class Charity(models.Model):
+class Charity(GeneralDate):
     PAYMENT_STATUS = (
         (1, "Accepted"),
         (2, "Rejected"),
@@ -15,6 +26,4 @@ class Charity(models.Model):
     last_name = models.CharField(max_length=100, null=True, blank=True)
     price = models.PositiveBigIntegerField(null=False, blank=False)
     phone_number = models.IntegerField(null=False, blank=False)
-    created_at = models.DateTimeField(auto_now_add=True)
-    updated_at = models.DateTimeField(auto_now=True)
     status = models.IntegerField(choices=PAYMENT_STATUS, null=False, blank=False)
