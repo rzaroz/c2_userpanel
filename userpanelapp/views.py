@@ -1,5 +1,5 @@
 from django.shortcuts import render
-
+import random
 from .forms import SearchForm
 from .models import *
 from django.shortcuts import render, HttpResponseRedirect, reverse, get_object_or_404, redirect, HttpResponse
@@ -38,6 +38,38 @@ def ajax_get_rate(request):
         return HttpResponse(None)
 
 
+def ajax_set_rate(request):
+    if request.META.get('HTTP_X_REQUESTED_WITH') == 'XMLHttpRequest':
+        try:
+            user_id = request.POST.get("user_id")
+            star = request.POST.get("star")
+            special_rate = SpecialRate.objects.filter(profile__user_id=user_id).first()
+            special_rate.star = star
+            special_rate.save()
+            return HttpResponse(True)
+        except:
+            return HttpResponse(False)
+
+
+def ajax_add_service(request):
+    if request.META.get('HTTP_X_REQUESTED_WITH') == 'XMLHttpRequest':
+        try:
+            name = request.POST.get('name')
+            description = request.POST.get('description')
+            price = request.POST.get('price')
+            profile = Profile.objects.filter(user_id=request.user.id)
+            service_instance = Service(
+                profile=profile,
+                name=name,
+                description=description,
+                price=price
+            )
+            service_instance.save()
+            return HttpResponse(True)
+        except:
+            return HttpResponse(False)
+
+
 def search(request):
     if request.POST:
         form = SearchForm(request.POST)
@@ -61,44 +93,12 @@ def service(request):
     return render(request, '', context)
 
 
-def ajax_add_service(request):
-    if request.META.get('HTTP_X_REQUESTED_WITH') == 'XMLHttpRequest':
-        try:
-            name = request.POST.get['name']
-            description = request.POST.get['description']
-            price = request.POST.get['price']
-            profile = Profile.objects.filter(user_id=request.user.id)
-            service_instance = Service(
-                profile=profile,
-                name=name,
-                description=description,
-                price=price
-            )
-            service_instance.save()
-            return HttpResponse(True)
-        except:
-            return HttpResponse(False)
-
-
-def ajax_set_rate(request):
-    if request.META.get('HTTP_X_REQUESTED_WITH') == 'XMLHttpRequest':
-        try:
-            user_id = request.POST.get["user_id"]
-            star = request.POST.get["star"]
-            special_rate = SpecialRate.objects.filter(profile__user_id=user_id).first()
-            special_rate.star = star
-            special_rate.save()
-            return HttpResponse(True)
-        except:
-            return HttpResponse(False)
-
-
 def factor(request, factor_id):
     context = {}
     if request.POST:
         total_price = 0
 
-        discount = request.POST.get['discount']
+        discount = request.POST.get('discount')
         context['discount'] = discount
 
         factor = Factor.objects.filter(id=factor_id).first()
@@ -117,6 +117,41 @@ def factors(request):
     factors_list = Factor.objects.filter(owner__user_id=request.user.id).all()
     context['factors'] = factors_list
     if request.POST:
-        factor_id = request.POST.get['factor_id']
+        factor_id = request.POST.get('factor_id')
         return HttpResponseRedirect(reverse("factor", kwargs={"factor_id": factor_id}))
+    return render(request, '', context)
+
+
+def choose_lottery_winner(filter_value):
+    participants = Profile.objects.filter(category=filter_value).all()
+
+    if not participants:
+        return None
+
+    winner = random.choice(participants)
+    return winner
+
+
+def lottery(request):
+    context = {}
+    winners = []
+
+    if request.method == 'POST':
+        try:
+            number = int(request.POST.get('number'))
+            category = request.POST.get('category')
+
+            for _ in range(number):
+                winner = choose_lottery_winner(category)
+                if not winner:
+                    context['error'] = 'برای دسته بندی انتخاب شده کاربری پیدا نشد'
+                    return render(request, '', context)
+
+                if winner not in winners:
+                    winners.append(winner)
+
+            context['winners_list'] = winners
+        except ValueError:
+            context['error'] = 'Please enter a valid number.'
+
     return render(request, '', context)
