@@ -65,7 +65,7 @@ class Service(GeneralDate):
     profile = models.ForeignKey(Profile, on_delete=models.CASCADE, related_name='profile_service')
     name = models.CharField(max_length=20)
     description = models.TextField()
-    price = models.IntegerField()
+    price = models.PositiveIntegerField()
 
 
 class Factor(GeneralDate):
@@ -108,12 +108,7 @@ class FactorRow(GeneralDate):
 
 
 class Rate(GeneralDate):
-    profile = models.ForeignKey("Profile", on_delete=models.CASCADE, related_name='profile_rate')
-    star = models.PositiveIntegerField()
-
-
-class SpecialRate(GeneralDate):
-    profile = models.ForeignKey("Profile", on_delete=models.CASCADE, related_name='profile_special_rate')
+    profile = models.OneToOneField("Profile", on_delete=models.CASCADE, related_name='profile_rate')
     star = models.PositiveIntegerField()
 
 

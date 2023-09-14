@@ -22,7 +22,7 @@ def setting(request):
 
 
 def ajax_get_rate(request):
-    star = 5
+    star = 0
     if request.META.get('HTTP_X_REQUESTED_WITH') == 'XMLHttpRequest':
         profile = Profile.objects.filter(user_id=request.user.id).first()
         rate = Rate.objects.filter(profile=profile).all()
@@ -38,14 +38,20 @@ def ajax_get_rate(request):
         return HttpResponse(None)
 
 
+def test_ajax(request):
+    return render(request, 'test_ajax.html')
+
+
 def ajax_set_rate(request):
     if request.META.get('HTTP_X_REQUESTED_WITH') == 'XMLHttpRequest':
         try:
-            user_id = request.POST.get("user_id")
-            star = request.POST.get("star")
-            special_rate = SpecialRate.objects.filter(profile__user_id=user_id).first()
-            special_rate.star = star
-            special_rate.save()
+            user_id = request.GET.get("user_id")
+            star = int(request.GET.get("star"))
+            profile = Profile.objects.filter(user_id=user_id).first()
+            rate = Rate.objects.filter(profile=profile).all()
+            rate.delete()
+            rate = Rate(profile=profile, star=star)
+            rate.save()
             return HttpResponse(True)
         except:
             return HttpResponse(False)
@@ -54,16 +60,11 @@ def ajax_set_rate(request):
 def ajax_add_service(request):
     if request.META.get('HTTP_X_REQUESTED_WITH') == 'XMLHttpRequest':
         try:
-            name = request.POST.get('name')
-            description = request.POST.get('description')
-            price = request.POST.get('price')
-            profile = Profile.objects.filter(user_id=request.user.id)
-            service_instance = Service(
-                profile=profile,
-                name=name,
-                description=description,
-                price=price
-            )
+            name = request.GET.get('name')
+            description = request.GET.get('description')
+            price = request.GET.get('price')
+            profile = Profile.objects.filter(user_id=request.user.id).first()
+            service_instance = Service(profile=profile, name=name, description=description, price=int(price))
             service_instance.save()
             return HttpResponse(True)
         except:
