@@ -2,7 +2,7 @@ from django.shortcuts import render
 from django.http import HttpResponse, HttpResponseRedirect
 from django.urls import reverse
 
-from .models import Charity
+from userpanelapp.models import *
 from django.template import loader
 from .form import DonateForm
 
@@ -16,6 +16,6 @@ def charityhome(request):
     if dnform.is_valid():
         dnform.save()
         return HttpResponseRedirect(
-            reverse("request") + "?" + "w=" + str(dnform.cleaned_data.get("price")))
+            reverse("request") + "?" + "w=" + str(dnform.cleaned_data.get("price")) + "&ch=sh")
 
     return render(request, "charityhomepage.html", context)

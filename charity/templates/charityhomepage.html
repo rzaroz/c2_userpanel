@@ -5,35 +5,6 @@
     <link rel="stylesheet" href="{% static 'css/charityhomepage.css' %}">
     <script src="{% static "js/farsi_type.js" %}"></script>
 {% endblock %}
-{% block menu %}
-<a href="">
-    <h5>صفحه اصلی</h5>
-</a>
-<a href="">
-    <h5>جستجو</h5>
-</a>
-<a href="">
-    <h5>مشارکت در تبلیغات</h5>
-</a>
-<a href="">
-    <h5>ثبت تبلیغات</h5>
-</a>
-<a href="">
-    <h5>گزاش تبلیغات</h5>
-</a>
-<a href="">
-    <h5>ارسال تیکت</h5>
-</a>
-<a href="">
-    <h5>چت آنلاین</h5>
-</a>
-<a href="">
-    <h5>خیریه</h5>
-</a>
-<a href="{% url 'setting' %}">
-    <h5>تنظیمات</h5>
-</a>
-{% endblock %}
 {% block object %}
     <div class="donateform">
         <form method="post">

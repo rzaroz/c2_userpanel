@@ -7,6 +7,7 @@ from django.urls import reverse
 from django.contrib import messages
 from django.core.cache import caches
 
+from userpanelapp.models import Profile
 # from account.models import Profile
 from .models import TransactionAmount
 from django.contrib.auth.decorators import login_required
@@ -31,6 +32,7 @@ CallbackURL = 'http://127.0.0.1:8000/pay/verify/'
 # @login_required(login_url="/account/login")
 def send_request(request):
     amount = int(request.GET.get("w", 0)) * 10
+    charity = request.GET.get("ch", None)
     req_data = {
         "merchant_id": MERCHANT,
         "amount": amount,
@@ -45,6 +47,8 @@ def send_request(request):
     authority = req.json()['data']['authority']
     if len(req.json()['errors']) == 0:
         obj = Payment(amount=amount / 10, transaction_id=authority, user_id=request.user.id)
+        if charity:
+            obj.type = Payment.CHARITY
         obj.save()
         return redirect(ZP_API_STARTPAY.format(authority=authority))
     else:
@@ -53,8 +57,8 @@ def send_request(request):
         return HttpResponse(f"Error code: {e_code}, Error Message: {e_message}")
 
 
-@login_required(login_url="/account/login")
-def verify(request):
+# @login_required(login_url="/account/login")
+def verify(request, profile=None):
     t_status = request.GET.get('Status')
     t_authority = request.GET['Authority']
     pending_payment = Payment.objects.all().filter(transaction_id=t_authority, user_id=request.user.id).first()
@@ -76,9 +80,16 @@ def verify(request):
                 pending_payment.status = "success"
                 pending_payment.save()
                 profile = Profile.objects.filter(user_id=request.user.id).first()
-                profile.balance += pending_payment.amount
-                profile.save()
-                messages.success(request, "کیف پول  شما با موفقیت شارژ شده است.")
+                if pending_payment.type == Payment.ACCEPTED:
+                    charity = profile.charity
+                    if charity:
+                        charity.status = charity.ACCEPTED
+                        charity.save()
+                        messages.success(request, "با تشکر از کمک شما به خیریه")
+                else:
+                    profile.balance += pending_payment.amount
+                    profile.save()
+                    messages.success(request, "کیف پول  شما با موفقیت شارژ شده است.")
                 user_flow_in_redis = cache.get(f"user_id_{request.user.id}", None)
                 if user_flow_in_redis:
                     return HttpResponseRedirect(reverse("handle_flow", kwargs={"hash": user_flow_in_redis}))
@@ -87,15 +98,27 @@ def verify(request):
             elif t_status == 101:
                 pending_payment.status = "failed"
                 pending_payment.save()
-                return HttpResponse('Transaction submitted : ' + str(
-                    req.json()['data']['message']
-                ))
-            else:
-                pending_payment.status = "failed"
-                pending_payment.save()
-                return HttpResponse('Transaction failed.\nStatus: ' + str(
-                    req.json()['data']['message']
-                ))
+
+                if pending_payment.type == Payment.REJECTED:
+                    charity = profile.charity
+                    if charity:
+                        charity.status = charity.REJECTED
+                        charity.save()
+                        messages.error(request, "کیف پول شما شارژ نگردید.")
+                else:
+                    # profile.balance += pending_payment.amount
+                    profile.save()
+                    messages.error(request, "کیف پول شما شارژ نگردید")
+
+            #     return HttpResponse('Transaction submitted : ' + str(
+            #         req.json()['data']['message']
+            #     ))
+            # else:
+            #     pending_payment.status = "failed"
+            #     pending_payment.save()
+            #     return HttpResponse('Transaction failed.\nStatus: ' + str(
+            #         req.json()['data']['message']
+            #     ))
         else:
             pending_payment.status = "failed"
             pending_payment.save()
@@ -104,6 +127,16 @@ def verify(request):
             return HttpResponse(f"Error code: {e_code}, Error Message: {e_message}")
     else:
         # payment cancelled
+        if pending_payment.type == Payment.REJECTED:
+            charity = profile.charity
+            if charity:
+                charity.status = charity.REJECTED
+                charity.save()
+                messages.error(request, "تراکنش شما کنسل گردید.")
+        else:
+            # profile.balance += pending_payment.amount
+            profile.save()
+            messages.error(request, "تراکنش شما کنسل گردید.")
         pending_payment.status = "failed"
         pending_payment.save()
         return HttpResponse('Transaction failed or canceled by user')

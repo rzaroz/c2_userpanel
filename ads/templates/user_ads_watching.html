@@ -1,0 +1,80 @@
+{% extends 'base.html' %}
+{% load operation %}
+{% load static %}
+{% block header %}
+    <title>مشاهده تبلیغ</title>
+    <link rel="stylesheet" href="{% static 'css/wachad.css' %}">
+{% endblock %}
+{% block object %}
+    <div class="explain">
+        <ol>
+            <li>
+                برای این که تبلیغ در حساب شما ثبت شود بایستی تا اتمام زمان تبلیغ صبر کنید
+            </li>
+            <li>
+                بعد از اتمام تبلیغ به صورت خودکار به تبلیغ بعدی میرود
+            </li>
+            <li>
+                قبل از اتمام تبلیغ به تبلیغ بعدی بروید تبلیغ برای شما ثبت نمی شود
+            </li>
+            <li>
+                در هنگام پخش تبلیغ اگر از صفحه خارج شوید زمان پخش متوقف می شود و پس از بازگشت دوباره شروع می شود
+            </li>
+        </ol>
+    </div>
+    <div class="ad">
+        {% if noviewADD %}
+            <div class="startproject">
+                <form method="post">
+                    {% csrf_token %}
+                    <input type="hidden" value="{{ noviewADD.pk }}" id="adid">
+                    <div class="startbtn">
+                        {% if noviewADD.video %}
+                            <h5 style="color: #eee" id="wait">
+                                لطفا تا آمدن دکمه ی پخش صبر کنید
+                            </h5>
+                        {% endif %}
+                        <button type="submit" id="start"><i class="fa-solid fa-play" style="color: #ffffff;"></i>
+                        </button>
+                    </div>
+                </form>
+                <div class="timerContainer">
+                    <input type="hidden" id="timeinput" value="60">
+                    <svg>
+                        <circle class="circle" cx="100" cy="100" r="80"/>
+                    </svg>
+                    <span class="timer">{{ noviewADD.time }}</span>
+                    <span class="done"></span>
+                </div>
+            </div>
+            <div class="adimageVideo">
+                {% if noviewADD.video %}
+                    <video id="advideo">
+                        <source src="{{ noviewADD.video.url | rename_media_url }}" type="video/mp4"/>
+                    </video>
+                {% elif noviewADD.image %}
+                    <img src="{{ noviewADD.image.url | rename_media_url }}" id="adimg"/>
+                {% endif %}
+            </div>
+        {% else %}
+            تبریک شما تمامی تبلیغ های موجود را مشاهده کرده اید
+        {% endif %}
+
+    </div>
+    {% if noviewADD %}
+        <form method="post" class="nextform">
+            <input type="hidden" value="next">
+            <button type="submit" id="reject">
+                رد تبلیغ
+            </button>
+        </form>
+    {% endif %}
+{% endblock %}
+{% block scripts %}
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/axios/1.5.0/axios.min.js"></script>
+    <script>
+        const csrf_token = "{{ csrf_token }}"
+        var countdownBegin = "{{ noviewADD.time }}"
+    </script>
+    <script src="{% static 'js/userwach.js' %}"></script>
+{% endblock %}

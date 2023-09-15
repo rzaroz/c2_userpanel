@@ -1,0 +1,64 @@
+{% extends 'base.html' %}
+{% load static %}
+{% block header %}
+    <title>تبلیغات من</title>
+    <link rel="stylesheet" href="{% static 'css/myads.css' %}">
+{% endblock %}
+{% block object %}
+    <div class="myadscontainer">
+        <div class="ads">
+            {% for i in all_ads %}
+                <div class="ad">
+                    <div class="part">
+                        <p>
+                            {{ i.name }}
+                        </p>
+                        <h4>
+                            اسم
+                        </h4>
+                    </div>
+                    <div class="part">
+                        <p>
+                            {{ i.title }}
+                        </p>
+                        <h4>
+                            توظیحات
+                        </h4>
+                    </div>
+                    <div class="part">
+                        <p>
+                            {{ i.maxview }}
+                        </p>
+                        <h5>
+                            تعداد ویوی مدنظر
+                        </h5>
+                    </div>
+                    <div class="part">
+                        {% if i.status == 1 %}
+                            <div class="pay">
+                                پرداخت
+                            </div>
+                        {% endif %}
+
+                        {% if i.status == 0 %}
+                            <p style="color: yellow">
+                                در انتظار تایید
+                            </p>
+                        {% elif i.status == 1 %}
+                            <p style="color: red">
+                                تایید انتظار برای پرداخت هزینه
+                            </p>
+                        {% elif i.status == 2 %}
+                            <p style="color: green">
+                                پرداخت شده
+                            </p>
+                        {% endif %}
+                        <h5>
+                            وضغیت
+                        </h5>
+                    </div>
+                </div>
+            {% endfor %}
+        </div>
+    </div>
+{% endblock %}

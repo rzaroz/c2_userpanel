@@ -1,7 +1,6 @@
 from django.db import models
 
 from extentions.utils import jalali_converter
-from charity.models import *
 
 
 class GeneralDate(models.Model):
@@ -41,16 +40,16 @@ class Profile(GeneralDate):
     def __str__(self):
         return str(self.user_id)
 
-    @property
-    def user(self):
-        return User()
+    # @property
+    # def user(self):
+    #     return User()
 
-    def save(
-            self, *args, **kwargs
-    ):
-        if not self.hash:
-            self.hash = make_hash(Flow)
-        super().save(*args, **kwargs)
+    # def save(
+    #         self, *args, **kwargs
+    # ):
+    #     if not self.hash:
+    #         self.hash = make_hash(Flow)
+    #     super().save(*args, **kwargs)
 
 
 class Address(GeneralDate):
@@ -70,7 +69,7 @@ class Service(GeneralDate):
 
 class Factor(GeneralDate):
     status = models.IntegerField()
-    charity = models.ForeignKey(Charity, on_delete=models.SET_NULL, null=True, blank=True)
+    charity = models.ForeignKey("Charity", on_delete=models.SET_NULL, null=True, blank=True)
     discount = models.PositiveIntegerField()
     gift = models.PositiveIntegerField()
     amount = models.PositiveIntegerField()
@@ -144,3 +143,39 @@ class TransactionAmount(models.Model):
 
     def __str__(self):
         return str(self.amount)
+
+
+class MyManager(models.Manager):
+    def get_queryset(self):
+        return super().get_queryset().filter(deleted=False)
+
+
+class General(GeneralDate):
+    is_delete = models.BooleanField(default=False)
+    objects = MyManager()
+    allobject = models.Manager()
+
+    def delete(self):
+        self.is_delete = True
+        self.save()
+
+    class Meta:
+        abstract = True
+
+
+class Charity(GeneralDate):
+    ACCEPTED = 1
+    REJECTED = 2
+    PENDING = 3
+
+    payment_Status = (
+        (ACCEPTED, "Accepted"),
+        (REJECTED, "Rejected"),
+        (PENDING, "Pending")
+    )
+    first_name = models.CharField(max_length=100, null=True, blank=True)
+    last_name = models.CharField(max_length=100, null=True, blank=True)
+    price = models.PositiveBigIntegerField(null=False, blank=False)
+    phone_number = models.IntegerField(null=False, blank=False)
+    status = models.IntegerField(choices=payment_Status, null=False, blank=False)
+    profile = models.ForeignKey(Profile, on_delete=models.SET_NULL, null=True, related_name="charity")

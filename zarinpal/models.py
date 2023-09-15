@@ -4,19 +4,7 @@ from extentions.log_error_middleware import get_exact_exception_info
 from extentions.utils import jalali_converter
 from django.contrib.auth.models import User
 
-
-class GeneralDate(models.Model):
-    updated_at = models.DateTimeField(auto_now=True)
-    created_at = models.DateTimeField(auto_now_add=True)
-
-    def jtime_updated_at(self):
-        return jalali_converter(self.updated_at)
-
-    def jtime_created_at(self):
-        return jalali_converter(self.created_at)
-
-    class Meta:
-        abstract = True
+from userpanelapp.models import GeneralDate
 
 
 class Payment(GeneralDate):

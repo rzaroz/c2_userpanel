@@ -1,7 +1,7 @@
 from _ast import pattern
 
 from django import forms
-from .models import Charity
+from userpanelapp.models import Charity
 
 
 class DonateForm(forms.Form):
@@ -18,7 +18,7 @@ class DonateForm(forms.Form):
     price = forms.IntegerField(
         label="مبلغ کمک به خیریه",
         label_suffix="",
-        widget=forms.TextInput(attrs={"placeholder": "لطفا مبلغ مورد نظر خود را وارد نمائید"})
+        widget=forms.TextInput(attrs={"placeholder": "لطفا مبلغ مورد نظر خود را به تومان وارد نمائید"})
     )
     phone = forms.CharField(
         label="شماره همراه",
@@ -46,9 +46,10 @@ class DonateForm(forms.Form):
 
     def save(self):
         try:
-            a = Charity(first_name=self.cleaned_data.get("name"), last_name=self.cleaned_data.get("fname"), phone_number=DonateForm.clean_phone.__get__("form_phone"),
-                                       price=DonateForm.clean_price.__get__("price"))
+            a = Charity(first_name=self.cleaned_data.get("name"),
+                        last_name=self.cleaned_data.get("fname"),
+                        phone_number=DonateForm.clean_phone.__get__("form_phone"),
+                        price=DonateForm.clean_price.__get__("price"))
             a.save()
-        except Exception as  e:
-            print(e)
-
+        except Exception as e:
+            forms.ValidationError(e)
