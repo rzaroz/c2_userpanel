@@ -120,7 +120,7 @@ def factors(request):
     if request.POST:
         factor_id = request.POST.get('factor_id')
         return HttpResponseRedirect(reverse("factor", kwargs={"factor_id": factor_id}))
-    return render(request, '', context)
+    return render(request, 'factors.html', context)
 
 
 def choose_lottery_winner(filter_value):

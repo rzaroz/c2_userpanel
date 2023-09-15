@@ -68,11 +68,10 @@ class Service(GeneralDate):
 
 
 class Factor(GeneralDate):
-    status = models.IntegerField()
     charity = models.ForeignKey("Charity", on_delete=models.SET_NULL, null=True, blank=True)
-    discount = models.PositiveIntegerField()
-    gift = models.PositiveIntegerField()
-    amount = models.PositiveIntegerField()
+    discount = models.PositiveIntegerField(default=0)
+    gift = models.PositiveIntegerField(default=0)
+    amount = models.PositiveIntegerField(default=0)
     owner = models.ForeignKey(Profile,
                               on_delete=models.SET_NULL,
                               null=True,
@@ -125,6 +124,11 @@ class Payment(GeneralDate):
                                 blank=True,
                                 related_name='profile_payment')
     transaction_id = models.CharField(max_length=200, verbose_name="آیدی تراکنش")
+    factor = models.OneToOneField(Factor,
+                                  on_delete=models.SET_NULL,
+                                  null=True,
+                                  blank=True,
+                                  related_name='payment_factor')
 
     class Meta:
         verbose_name = "تراکنش ها"
