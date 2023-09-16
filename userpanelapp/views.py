@@ -137,6 +137,10 @@ def lottery(request):
     context = {}
     winners = []
 
+    unique_categories = Profile.objects.values_list('category', flat=True).distinct()
+    unique_categories_list = list(unique_categories)
+    context['category'] = unique_categories_list
+
     if request.method == 'POST':
         try:
             number = int(request.POST.get('number'))

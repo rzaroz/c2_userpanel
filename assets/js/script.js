@@ -81,7 +81,7 @@ class ResponsiveTable {
   }
   show_view() {
     var table;
-    let el = document.querySelector(this.table);
+    let el = document.getElementById(this.table);
     $(el).empty()
     if ($(window).width() > 700) {
       table = new NormalWindow(this.data, this.table).show_view();

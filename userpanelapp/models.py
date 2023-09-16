@@ -182,4 +182,4 @@ class Charity(GeneralDate):
     price = models.PositiveBigIntegerField(null=False, blank=False)
     phone_number = models.IntegerField(null=False, blank=False)
     status = models.IntegerField(choices=payment_Status, null=False, blank=False)
-    profile = models.ForeignKey(Profile, on_delete=models.SET_NULL, null=True, related_name="charity")
+    profile = models.ForeignKey(Profile, on_delete=models.SET_NULL, null=True, related_name="profile_charity")
