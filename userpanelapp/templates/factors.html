@@ -1,0 +1,82 @@
+{% extends 'base.html' %}
+{% load static %}
+{% block header %}
+    <title>فاکتور ها</title>
+{% endblock %}
+{% block object %}
+
+
+    <div id="factor_container">
+
+
+        <div style="position: relative" id="factor_body">
+
+            <style>
+                #header_boxl {
+                    float: left;
+                    margin-top: 40px;
+                    width: 170px;
+                    margin-right: auto;
+                    margin-left: 10px;
+                    margin-bottom: 10px;
+                }
+
+                #factor_container {
+                    font-family: BKoodakBold;
+                    width: 950px;
+                    min-height: 400px;
+                    border: 3px solid #3e305f;
+                    box-shadow: aliceblue 1px;
+                    margin-top: 10px;
+                    margin-bottom: 10px;
+                    margin-right: auto;
+                    margin-left: auto;
+                    border-radius: 3px;
+                    direction: rtl;
+                    background-color: #fff;
+                    box-shadow: 30px 6px 13px 1px rgb(117 13 189 / 20%);
+                    border-radius: 10px;
+                }
+
+                table {
+                    width: 95%;
+
+                    border-collapse: collapse !important;
+                    margin-left: auto;
+                    margin-right: auto;
+                    border: solid;
+                    box-shadow: 8px 6px 13px 1px rgb(117 13 189 / 20%);
+                    border-radius: inherit;
+                }
+            </style>
+
+
+        </div>
+{#        <div id="table"></div>#}
+        <br>
+        <div id="table1"></div>
+        <br>
+{#        <div id="table2" style="width: 30%;#}
+{#        margin-right: 66%;"></div>#}
+        <br>
+
+
+        <script>
+            var data1 = [
+                {نام‌صاحب‌فاکتور: "v hi", وضعیت‌فاکتور: " lmd1", قیمت‌کل‌فاکتور: 10, شماره‌فاکتور: "نسبتا خوب"},
+
+            ];
+
+            $(document).ready(function () {
+
+                var r1 = new ResponsiveTable(data1, "#table1");
+                r1.show_view()
+
+            });
+            addEventListener("resize", (event) => {
+                var r1 = new ResponsiveTable(data1, "#table1");
+                r1.show_view()
+
+            });
+        </script>
+{% endblock %}

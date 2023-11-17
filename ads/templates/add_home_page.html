@@ -1,0 +1,64 @@
+{% extends 'base.html' %}
+{% load static %}
+{% block header %}
+    <title>تبلیغات</title>
+    <link rel="stylesheet" href="{% static 'css/wachad.css' %}">
+    <link rel="stylesheet" href="{% static 'css/adhomepage.css' %}">
+{% endblock %}
+{% block object %}
+    <div class="walletandcount">
+        <div class="wallet">
+            <div class="icon">
+                <i class="fa-solid fa-wallet"></i>
+            </div>
+            <div class="info">
+                <h3>30000</h3>
+                <h5>درآمد حاصل از تماشای تبلیغات</h5>
+            </div>
+        </div>
+        <div class="adcount">
+            <div class="icon">
+                <i class="fa-solid fa-dollar-sign"></i>
+            </div>
+            <div class="info">
+                <h3>30000</h3>
+                <h5>تعداد تبلیغات مشاهده شده</h5>
+            </div>
+        </div>
+    </div>
+    <div class="wachads">
+        <div class="adpic">
+            <img src="{% static 'images/wachad.svg' %}" alt="">
+        </div>
+        <div class="adlink">
+            <a href="{{ url_ad }}">
+                <h4>مشاهده تبلیغات</h4>
+            </a>
+            <h5>میتونی با تماشای تبلیغ برای خودت درآمد کسب کنی</h5>
+        </div>
+    </div>
+    <div class="subandmyads">
+        <div class="subad">
+            <div class="adpic">
+                <img src="{% static 'images/submitad.svg' %}" alt="">
+            </div>
+            <div class="adlink">
+                <a href="{% url 'sub_add_req' %}">
+                    <h3>ثبت تبلیغات</h3>
+                </a>
+                <h5>اینجا میتونی تبلیغ خودتو ثبت کنی</h5>
+            </div>
+        </div>
+        <div class="myads">
+            <div class="adpic">
+                <img src="{% static 'images/myads.svg' %}" alt="">
+            </div>
+            <div class="adlink">
+                <a href="{% url 'my_ads' %}">
+                    <h3>تبلیغات من</h3>
+                </a>
+                <h5>آمار تبلیغاتی که ثبت کردیو اینجا میتونی ببینی</h5>
+            </div>
+        </div>
+    </div>
+{% endblock %}

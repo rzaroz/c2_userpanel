@@ -1,0 +1,231 @@
+.formcontainer {
+    width: 50%;
+    height: 80%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background-color: white;
+    border-radius: 20px;
+    box-shadow: 3px 3px 10px gray;
+}
+.formcontainer form {
+    width: 90%;
+    height: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: start;
+    padding: 10px;
+    flex-direction: column;
+}
+.errorlist {
+    position: absolute;
+    width: auto;
+    height: auto;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border-radius: 10px;
+    background-color: #ad5353;
+    color: white;
+    padding: 20px;
+    text-align: right;
+    list-style: none;
+    direction: rtl;
+    top: 10px;
+}
+.formcontainer form .title {
+    width: 90%;
+    height: auto;
+    padding: 30px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+.formcontainer form label {
+    width: 60%;
+    height: auto;
+    padding: 15px;
+    display: flex;
+    align-items: center;
+    justify-content: flex-end;
+    font-size: 15px;
+}
+.formcontainer form input {
+    width: 60%;
+    height: auto;
+    padding: 8px;
+    background-color: #eee;
+    border-radius: 10px;
+    border: transparent;
+    outline: transparent;
+    direction: rtl;
+}
+.formcontainer form textarea {
+    width: 60%;
+    height: auto;
+    padding: 8px;
+    background-color: #eee;
+    border-radius: 10px;
+    border: transparent;
+    outline: transparent;
+    direction: rtl;
+    resize: none;
+}
+.formcontainer form input[type="file"]::file-selector-button {
+    display: none;
+}.formcontainer form input::placeholder {
+    font-size: 10px;
+    color: #7e7e7e;
+}
+.formcontainer form textarea::placeholder {
+    font-size: 10px;
+    color: #7e7e7e;
+}
+.formcontainer form button{
+    padding: 5px 10px 5px 10px;
+    margin: 10px;
+    background-color: var(--bgcolorMenu);
+    color: white;
+    border-radius: 8px;
+    cursor: pointer;
+}
+/* --------------------------------------UNDER 5 INCH PHONES--------------------------------------------- */
+@media (min-width: 300px) and (max-width: 389px) {
+    /* Objects */
+    .objcontainer {
+        width: 100vw;
+        height: auto;
+        justify-content: start;
+    }
+    .objectsbar {
+        width: 100%;
+        height: auto;
+        padding-top: 10px;
+        padding-bottom: 10px;
+    }
+    .objects {
+        width: 100%;
+        height: auto;
+        padding-top: 20px;
+        padding-bottom: 20px;
+    }
+    .formcontainer {
+        width: 90%;
+    }
+    .formcontainer form label {
+        width: 90%;
+    }
+    .formcontainer form input {
+        width: 90%;
+    }
+    .formcontainer form textarea {
+        width: 90%;
+    }
+}
+/* --------------------------------------5 INCH AND BIGGER PHONES--------------------------------------------- */
+@media (min-width: 390px) and (max-width: 600px) {
+   /* Objects */
+    .objcontainer {
+        width: 100vw;
+        height: auto;
+        justify-content: start;
+    }
+    .objectsbar {
+        width: 100%;
+        height: auto;
+        padding-top: 10px;
+        padding-bottom: 10px;
+    }
+    .objects {
+        width: 100%;
+        height: auto;
+        padding-top: 20px;
+        padding-bottom: 20px;
+    }
+    .formcontainer {
+        width: 90%;
+    }
+    .formcontainer form label {
+        width: 90%;
+    }
+    .formcontainer form input {
+        width: 90%;
+    }
+    .formcontainer form textarea {
+        width: 90%;
+    }
+}
+/* --------------------------------------Mini tablets--------------------------------------------- */
+@media (min-width: 601px) and (max-width: 800px) {
+    /* Objects */
+    .objcontainer {
+        width: 100vw;
+        height: auto;
+        justify-content: start;
+    }
+    .objectsbar {
+        width: 100%;
+        height: auto;
+        padding-top: 10px;
+        padding-bottom: 10px;
+    }
+    .objects {
+        width: 100%;
+        height: auto;
+        padding-top: 20px;
+        padding-bottom: 20px;
+    }
+    .formcontainer {
+        width: 90%;
+    }
+    .formcontainer form label {
+        width: 90%;
+    }
+    .formcontainer form input {
+        width: 90%;
+    }
+    .formcontainer form textarea {
+        width: 90%;
+    }
+}
+/* --------------------------------------Tablets--------------------------------------------- */
+@media (min-width: 801px) and (max-width: 1000px) {
+    /* Objects */
+    .objcontainer {
+        width: 100vw;
+        height: auto;
+        justify-content: start;
+    }
+    .objectsbar {
+        width: 100%;
+        height: auto;
+        padding-top: 10px;
+        padding-bottom: 10px;
+    }
+    .objects {
+        width: 100%;
+        height: auto;
+        padding-top: 20px;
+        padding-bottom: 20px;
+    }
+    .formcontainer {
+        width: 90%;
+    }
+    .formcontainer form label {
+        width: 90%;
+    }
+    .formcontainer form input {
+        width: 90%;
+    }
+    .formcontainer form textarea {
+        width: 90%;
+    }
+}
+/* ----------------------------------------------------UNDER 15 INCH LAPTOPS & Devices------------------------------------------------------- */
+@media (min-width: 1001px) and (max-width: 1300px) {
+
+}
+/* ----------------------------------------------------Big Devices------------------------------------------------------- */
+@media screen and (min-width: 1600px){
+
+}

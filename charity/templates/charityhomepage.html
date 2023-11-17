@@ -1,0 +1,17 @@
+{% extends "base.html" %}
+{% load static %}
+{% block header %}
+    <title>خیریه</title>
+    <link rel="stylesheet" href="{% static 'css/charityhomepage.css' %}">
+    <script src="{% static "js/farsi_type.js" %}"></script>
+{% endblock %}
+{% block object %}
+    <div class="donateform">
+        <form method="post">
+            {% csrf_token %}
+            {{ dnform }}
+            <button type="submit">پرداخت</button>
+        </form>
+
+    </div>
+{% endblock %}

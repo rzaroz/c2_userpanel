@@ -1,0 +1,9 @@
+/userpanel/settings.py
+/userpanelapp/migrations
+env_var.json
+/charity/migrations
+/zarinpal/migrations
+/venv
+/.gitignore
+/Pipfile.lock
+/Pipfile

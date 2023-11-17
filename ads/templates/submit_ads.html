@@ -1,0 +1,25 @@
+{% extends 'base.html' %}
+{% load static %}
+{% block header %}
+    <title>ثبت تبلیغ</title>
+    <link rel="stylesheet" href="{% static 'css/submitad.css' %}">
+{% endblock %}
+{% block object %}
+    <div class="formcontainer">
+        <form method="post" enctype="multipart/form-data">
+            {% csrf_token %}
+            <div class="title">
+                <h3>
+                    درخواست ثبت تبلیغ
+                </h3>
+            </div>
+            {{ RequestForm }}
+            <button type="submit">
+                ارسال درخواست
+            </button>
+        </form>
+    </div>
+{% endblock %}
+{% block scripts %}
+    <script src="{% static 'js/checkfiletime.js' %}"></script>
+{% endblock %}

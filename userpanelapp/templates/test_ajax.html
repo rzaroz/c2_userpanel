@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    {% include 'components/headers.html' %}
+</head>
+<body>
+<script>
+    // ajax get rate
+    {#$.ajax({#}
+    {#type: 'GET',#}
+    {#    url: '/ajax_get_rate/',  // Replace with your actual URL#}
+    {#    success: function (response) {#}
+    {#        console.log('AJAX Get Rate Response:', response);#}
+    {#        // Process the response data here#}
+    {#    },#}
+    {#    error: function (xhr, status, error) {#}
+    {#        console.error('AJAX Error:', error);#}
+    {#    }#}
+    {# });#}
+
+    // ajax set special rate
+    {#$.ajax({#}
+    {#type: 'POST',#}
+    {#    url: '/ajax_set_rate/',  // Replace with your actual URL#}
+    {#    data: {#}
+    {#        user_id: '773',  // Replace with the actual user ID#}
+    {#        star: 2  // Replace with the desired star value#}
+    {#    },#}
+    {#    success: function (response) {#}
+    {#        if (response === true) {#}
+    {#            console.log('Rate set successfully.');#}
+    {#        } else {#}
+    {#            console.error('Failed to set rate.');#}
+    {#        }#}
+    {#    },#}
+    {#    error: function (xhr, status, error) {#}
+    {#        console.error('AJAX Error:', error);#}
+    {#    }#}
+    {# });#}
+
+    // ajax add service
+    $.ajax({
+        {#type: 'POST',#}
+        url: '/ajax_add_service/',  // Replace with your actual URL
+        data: {
+            name: 'Sample Service',
+            description: 'This is a test service',
+            price: 19
+        },
+        success: function (response) {
+            if (response === true) {
+                console.log('Service added successfully.');
+            } else {
+                console.error('Failed to add service.');
+            }
+        },
+        error: function (xhr, status, error) {
+            console.error('AJAX Error:', error);
+        }
+    });
+</script>
+</body>
+</html>
